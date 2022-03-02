@@ -28,7 +28,7 @@
     <form method="POST" action="/{{article.id}}/buy/">
         {% csrf_token %}
 
-        <input name="quantity" type="number" min="1" max="{{article.quantity}}">
+        <input required name="quantity" type="number" min="1" max="{{article.quantity}}">
         <button type="submit">Buy</button>
     </form>
 {% else %}
