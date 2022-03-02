@@ -1,0 +1,26 @@
+<h1>Index</h1>
+
+<table>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>price</th>
+        <th>quantity</th>
+        <th>Actions</th>
+    <tr>
+    {% for article in articles %}
+    <tr>
+        <td>{{ article.id }}</td>
+        <td>{{ article.title }}</td>
+        <td>{{ article.price }}</td>
+        <td>{{ article.quantity }}</td>
+        <td>
+            <a href="/{{article.id}}">See</a>
+            <!-- <a href="/{{article.id}}/edit">Edit</a> | -->
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="">Messenger</a>
+<a href="/create">new</a>

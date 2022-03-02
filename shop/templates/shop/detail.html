@@ -1,0 +1,28 @@
+<h1>Detail</h1>
+<h2>{{ article.title }}</h2>
+
+
+<table>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>image</th>
+        <th>price</th>
+        <th>quantity</th>
+    <tr>
+    <tr>
+        <td>{{ article.id }}</td>
+        <td>{{ article.title }}</td>
+        <td>
+            {% if article.image %}
+                <img height="200" width="200" src="{{article.image.url}}" alt="">
+            {% endif %}
+        </td>
+        <td>{{ article.price }}</td>
+        <td>{{ article.quantity }}</td>
+    </tr>
+</table>
+
+<a href="/{{article.id}}/buy">Buy</a>
+
+<a href="/">Retour</a>
