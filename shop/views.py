@@ -23,9 +23,11 @@ def create(request):
     return render(request, 'shop/create.html', context)
 
 def buy(request, article_id):
-    # remove 1 from quantity
+    
+    quantity = request.POST['quantity']
+    
     article = get_object_or_404(Article, pk=article_id)
-    article.quantity -= 1
+    article.quantity -= int(quantity)
     article.save()
     return HttpResponseRedirect('/')
 
