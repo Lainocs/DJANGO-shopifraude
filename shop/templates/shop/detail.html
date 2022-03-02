@@ -23,11 +23,16 @@
     </tr>
 </table>
 
-<form method="POST" action="/{{article.id}}/buy/">
-    {% csrf_token %}
+{% if article.quantity > 0 %}
 
-    <input name="quantity" type="number" min="1" max="{{article.quantity}}">
-    <button type="submit">Buy</button>
-</form>
+    <form method="POST" action="/{{article.id}}/buy/">
+        {% csrf_token %}
+
+        <input name="quantity" type="number" min="1" max="{{article.quantity}}">
+        <button type="submit">Buy</button>
+    </form>
+{% else %}
+    <p>Out of stock</p>
+{% endif %}
 
 <a href="/">Retour</a>
