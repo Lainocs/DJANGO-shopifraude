@@ -19,6 +19,11 @@ python3 -m pip install django
 python3 -m pip install Pillow
 ```
 
+## To install channels globally
+```
+python3 -m pip install channels
+```
+
 ## To install Tailwind globally
 ```
 python3 -m pip install django-tailwind
