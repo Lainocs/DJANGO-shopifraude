@@ -1,47 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Messenger</title>
-</head>
-<body>
-    <a href="/">Retour</a>
-    <h1>Go discuter les p'tits potes</h1>
+{% extends "base.html"%}
 
-    <form id="form">
-        <input type="text" name="message">
-    </form>
+{% block navButton %}
+<a href="/create" class="text-base font-medium text-gray-500 hover:text-gray-900"> Create a product</a>
+<a href="/messenger" class="text-base font-medium text-gray-500 hover:text-gray-900"> Messenger</a>
+{% endblock %}
 
+{% block navButtonMobile %}
+<a href="/create" class="ml-3 text-base font-medium text-gray-900"> Create a product </a>
+<a href="/messenger" class="ml-3 text-base font-medium text-gray-900"> Messenger </a>
+{% endblock %}
+
+{% block content %}
+<a href="/" class="text-slate-400 italic ml-6 md:ml-32">Retour</a>
+
+<div class="flex justify-between items-center mt-6 mx-6 md:mx-32">
+    <h1 class="font-bold text-xl">Discutons</h1>
+    <div class="flex -space-x-2 overflow-hidden">
+        <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+        <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+        <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80" alt="">
+        <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+    </div>
+</div>
+
+<div class="hidden sm:block" aria-hidden="true">
+    <div class="py-5">
+      <div class="border-t border-gray-200"></div>
+    </div>
+</div>
+
+<div class="relative mx-6 md:mx-32">
     <div id="messages"></div>
+    <form id="form" class="fixed bottom-0 left-0 right-0 bg-white h-24 w-full">
+        <input type="text" id="message" name="message" rows="3" class="mx-6 md:mx-32 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block h-20 w-10/12 sm:text-sm border border-gray-300 rounded-md" placeholder="Press Enter to send"></textarea>
+    </form>
+</div>
 
-    <script type="text/javascript">
-        let url = `ws://${window.location.host}/ws/socket-server/`
+<script type="text/javascript">
+    let url = `ws://${window.location.host}/ws/socket-server/`
 
-        const socket = new WebSocket(url)
+    const socket = new WebSocket(url)
 
-        socket.onmessage = function(e) {
-            let data = JSON.parse(e.data)
-            console.log('data: ', data)
+    socket.onmessage = function(e) {
+        let data = JSON.parse(e.data)
+        console.log('data: ', data)
 
-            if(data.type === 'message_received') {
-                let messages = document.getElementById('messages')
-                messages.insertAdjacentHTML('beforeend', `<div>
-                    <p>${data.message}</p>
-                </div>`)
-            }
+        if(data.type === 'message_received') {
+            let messages = document.getElementById('messages')
+            messages.insertAdjacentHTML('beforeend', `<div>
+                <p>${data.message}</p>
+            </div>`)
         }
+    }
 
-        let form = document.getElementById('form')
-        form.addEventListener('submit', (e) => {
-            e.preventDefault()
-            let message = e.target.message.value
-            socket.send(JSON.stringify({
-                'message': message
-            }))
-            form.reset()
-        })
-    </script>
-</body>
-</html>
+    let form = document.getElementById('form')
+    form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        let message = e.target.message.value
+        socket.send(JSON.stringify({
+            'message': message
+        }))
+        form.reset()
+    })
+</script>
+{% endblock %}
