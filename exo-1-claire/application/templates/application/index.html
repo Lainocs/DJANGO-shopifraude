@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django</title>
+</head>
+<body>
+    <h1>Django</h1>
+    <a href="/create">Create a new question</a>
+
+    <table>
+        <thead>
+            <th>Question</th>
+            <th></th>
+            <th></th>
+        </thead>
+        {% for i in questions %}
+        <tr>
+            <td>{{ i.text }}</td>
+            <td><a href="/edit/{{ i.id }}">Edit</a></td>
+            <td><a href="/delete/{{ i.id }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+</body>
+</html>
