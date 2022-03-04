@@ -14,9 +14,24 @@ https://www.python.org/ftp/python/3.10.2/python-3.10.2-amd64.exe
 python3 -m pip install django
 ```
 
-## To install Pillow
+## To install Pillow globally
 ```
 python3 -m pip install Pillow
+```
+
+## To install Tailwind globally
+```
+python3 -m pip install django-tailwind
+```
+
+## To install Tailwind in the project
+```
+python3 manage.py tailwind install
+```
+
+## To compile Tailwind CSS
+```
+python3 manage.py tailwind start
 ```
 
 ### Migrate & Run Serve
