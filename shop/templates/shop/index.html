@@ -1,9 +1,16 @@
 {% extends "base.html"%}
 
-{% block content %}
-<a href="">Messenger</a>
-<a href="/create">new</a>
+{% block navButton %}
+<a href="/create" class="text-base font-medium text-gray-500 hover:text-gray-900"> Create a product</a>
+<a href="" class="text-base font-medium text-gray-500 hover:text-gray-900"> Messenger</a>
+{% endblock %}
 
+{% block navButtonMobile %}
+<a href="/create" class="ml-3 text-base font-medium text-gray-900"> Create a product </a>
+<a href="" class="ml-3 text-base font-medium text-gray-900"> Messenger </a>
+{% endblock %}
+
+{% block content %}
 <div class="bg-white">
     <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
       <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">Product List</h2>
